@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10sp">
+
+        <TextView
+            android:id="@+id/initialMoneyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quando dinheiro você tem?"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/initialMoneyEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="9"
+            android:inputType="numberDecimal"
+             />
+
+        <TextView
+            android:id="@+id/monthlyMoneyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quanto deseja investir mensalmente?"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/monthlyMoneyEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="9"
+            android:inputType="numberDecimal"/>
+
+        <TextView
+            android:id="@+id/yeasTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Por quantos anos?"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/yearsEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="3"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear1"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:onClick="calculate"
+        android:paddingTop="10dp"
+        android:text="Calcular" />
+
+
+    <ExpandableListView
+        android:id="@+id/investmentsExpandableListView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:layout_below="@id/calculateButton"/>
+
+    <!--LinearLayout
+        android:id="@+id/linearBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/investmentsExpandableListView"
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="10sp">
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Foram descontados todos os impostos e taxas." />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* CDI utilizado é de 6,40% a.a." />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Selic real utilizada é de 6,40% a.a." />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Taxa de custódia B3 do Tesouro Selic é de 0,25% a.a." />
+    </LinearLayout-->
+
+
+
+
+</RelativeLayout>
