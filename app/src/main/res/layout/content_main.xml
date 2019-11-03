@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:hapticFeedbackEnabled="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -12,6 +14,13 @@
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#12FCFCFC"
         android:orientation="vertical"
         android:padding="10sp">
 
@@ -27,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="9"
-            android:inputType="numberDecimal"
-             />
+            android:inputType="numberDecimal" />
 
         <TextView
             android:id="@+id/monthlyMoneyTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Quanto deseja investir mensalmente?"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <EditText
@@ -42,13 +51,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="9"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/yeasTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Por quantos anos?"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <EditText
@@ -56,7 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="3"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
@@ -68,19 +80,22 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:background="#20F8F3F3"
         android:onClick="calculate"
         android:paddingTop="10dp"
-        android:text="Calcular" />
+        android:text="Calcular"
+        android:textColor="#4CAF50" />
 
 
     <ExpandableListView
         android:id="@+id/investmentsExpandableListView"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:layout_height="match_parent"
+        android:layout_below="@id/calculateButton"
+        android:layout_margin="10dp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
-        android:layout_below="@id/calculateButton"/>
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
 
     <!--LinearLayout
         android:id="@+id/linearBottom"
@@ -117,8 +132,6 @@
             android:layout_height="wrap_content"
             android:text="* Taxa de custódia B3 do Tesouro Selic é de 0,25% a.a." />
     </LinearLayout-->
-
-
 
 
 </RelativeLayout>
