@@ -6,6 +6,8 @@ import android.util.Log;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.lucreitor.math.FinancialCalculator;
+import br.com.lucreitor.vo.Indicators;
 import br.com.lucreitor.vo.Selic;
 
 public class SelicRestTask extends AsyncTask<Void, Void, Selic[]> {
@@ -27,6 +29,12 @@ public class SelicRestTask extends AsyncTask<Void, Void, Selic[]> {
 
     @Override
     protected void onPostExecute(Selic[] selicList) {
+        Double selicOverToday = FinancialCalculator.convertTaxFromYearToMonth(Double.parseDouble(selicList[0].getValor())/100);
+
+        Indicators.setSelicOverInterestByMonth(selicOverToday);
+        Indicators.setCdiInterestByMonth(selicOverToday);
+        Indicators.setPoupancaInterestByMonth(selicOverToday);
+
         Log.i("Log",selicList[0].getData());
         Log.i("Log",selicList[0].getValor());
     }

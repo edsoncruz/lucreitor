@@ -26,8 +26,9 @@
             android:id="@+id/initialMoneyEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="9"
+            android:ems="7"
             android:inputType="numberDecimal"
+            android:maxLength="12"
              />
 
         <TextView
@@ -41,8 +42,9 @@
             android:id="@+id/monthlyMoneyEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="9"
-            android:inputType="numberDecimal"/>
+            android:ems="7"
+            android:inputType="numberDecimal"
+            android:maxLength="12"/>
 
         <TextView
             android:id="@+id/yeasTextView"
@@ -55,8 +57,9 @@
             android:id="@+id/yearsEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="3"
-            android:inputType="numberDecimal" />
+            android:ems="25645645"
+            android:inputType="numberDecimal"
+            android:maxLength="2"/>
 
     </LinearLayout>
 

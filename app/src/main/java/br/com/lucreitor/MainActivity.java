@@ -1,13 +1,12 @@
 package br.com.lucreitor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,12 +19,15 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
 import java.util.List;
 
+import br.com.lucreitor.tasks.SelicRestTask;
+import br.com.lucreitor.vo.Indicators;
 import br.com.lucreitor.vo.Investment;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity/* implements NavigationView.OnNavigationItemSelectedListener*/ {
 
     EditText initialMoneyEditText;
     EditText monthlyMoneyEditText;
@@ -49,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
+
+
+        /*
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+         */
     }
 
+    /*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -66,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,12 +93,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            NumberFormat percentFormat = NumberFormat.getPercentInstance();
+            percentFormat.setMaximumFractionDigits(2);
+            percentFormat.setMinimumFractionDigits(2);
+
+
+            AlertDialog dialog = new AlertDialog.Builder(this).setMessage(
+                    "Selic Over (a.a): " + percentFormat.format(Indicators.getSelicOverInterestByYear()) + "\n"+
+                    "CDI (a.a): " + percentFormat.format(Indicators.getCdiInterestByYear()) + "\n"+
+                    "Poupança (a.a): " + percentFormat.format(Indicators.getPoupancaInterestByYear()) + "\n"+
+                    "FGTS (a.a): " + percentFormat.format(0.03 ) + "\n"+
+                    "Taxas Tesouro (a.a): " + percentFormat.format(0.0025) + "\n"
+
+            )
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            // Do stuff if user accepts
+                        }
+                    }).create();
+            dialog.show();
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -113,11 +146,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        SelicRestTask selicRestTask = new SelicRestTask();
+        selicRestTask.execute();
 
         initialMoneyEditText = findViewById(R.id.initialMoneyEditText);
         monthlyMoneyEditText =  findViewById(R.id.monthlyMoneyEditText);

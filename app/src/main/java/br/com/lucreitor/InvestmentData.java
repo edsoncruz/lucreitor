@@ -12,11 +12,11 @@ public class InvestmentData {
     public static List<Investment> generateInvestmentData(Double initialValue, Double paymentValue, Integer periodAmount) {
 
         Investment fgts = new Investment("FGTS", initialValue, paymentValue, FinancialCalculator.convertTaxFromYearToMonth(0.03), 1.0, periodAmount, true,false);
-        Investment poupanca = new Investment("Poupança",initialValue, paymentValue, Indicators.POUPANCA_INTEREST_BY_MONTH, 1.0, periodAmount, true, false);
-        Investment selic = new Investment("Selic",initialValue, paymentValue, Indicators.SELIC_REAL_INTEREST_BY_MONTH, 1.0, periodAmount, false, true);
-        Investment cdb100 = new Investment("CDB de 100% do CDI",initialValue, paymentValue, Indicators.CDI_INTEREST_BY_MONTH, 1.0, periodAmount, false,false);
-        Investment lci100 = new Investment("LCI de 100% do CDI", initialValue, paymentValue, Indicators.CDI_INTEREST_BY_MONTH, 1.0, periodAmount, true, false);
-        Investment cdb120 = new Investment("CDB de 120% do CDI", initialValue, paymentValue, Indicators.CDI_INTEREST_BY_MONTH, 1.2, periodAmount, false,false);
+        Investment poupanca = new Investment("Poupança",initialValue, paymentValue, Indicators.getPoupancaInterestByMonth(), 1.0, periodAmount, true, false);
+        Investment selic = new Investment("Selic",initialValue, paymentValue, Indicators.getSelicOverInterestByMonth(), 1.0, periodAmount, false, true);
+        Investment cdb100 = new Investment("CDB de 100% do CDI",initialValue, paymentValue, Indicators.getCdiInterestByMonth(), 1.0, periodAmount, false,false);
+        Investment lci100 = new Investment("LCI de 100% do CDI", initialValue, paymentValue, Indicators.getCdiInterestByMonth(), 1.0, periodAmount, true, false);
+        Investment cdb120 = new Investment("CDB de 120% do CDI", initialValue, paymentValue, Indicators.getCdiInterestByMonth(), 1.2, periodAmount, false,false);
         Investment cdbPre10 = new Investment("CDB pré 10% a.a",initialValue, paymentValue, FinancialCalculator.convertTaxFromYearToMonth(0.1), 1.0, periodAmount, false,false);
         Investment cdbPre1268 = new Investment("CDB pré 12,68%",initialValue, paymentValue, FinancialCalculator.convertTaxFromYearToMonth(0.1268), 1.0, periodAmount, false,false);
         Investment cdbPre15 = new Investment("CDB pré 15% a.a",initialValue, paymentValue, FinancialCalculator.convertTaxFromYearToMonth(0.15), 1.0, periodAmount, false,false);

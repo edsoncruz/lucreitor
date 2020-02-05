@@ -8,7 +8,7 @@ public class FinancialCalculator {
     private static double PROGRESSIVE_TAXES_UNDER_ONE_YEAR = 0.225;
     private static double PROGRESSIVE_TAXES_UNDER_TWO_YEAR = 0.175;
     private static double PROGRESSIVE_TAXES_ABOVE_TWO_YEAR = 0.15;
-    private static double TREASURE_TAXES_BY_MONTH = (Math.pow(1 + 0.0025, 1/12d)-1);
+    private static double TREASURE_TAXES_BY_SEMESTER = (Math.pow(1 + 0.0025, 1/2d)-1);
 
 
     /**
@@ -31,9 +31,10 @@ public class FinancialCalculator {
             totalResult = ((interestValue + 1) * totalResult) + investment.getPaymentValue();
             capitalResult += investment.getPaymentValue();
 
-            //It's supposed to be by semester, but to simply is being by month
-            if(investment.isTreasure()){
-                double otherCosts = totalResult * TREASURE_TAXES_BY_MONTH;
+            //Every semester Treasure charges a tax
+            if(investment.isTreasure() && (i+1) % 6 == 0){
+
+                double otherCosts = totalResult * TREASURE_TAXES_BY_SEMESTER;
                 totalResult = totalResult - otherCosts;
 
                 otherCostsResult += otherCosts;
@@ -67,5 +68,9 @@ public class FinancialCalculator {
 
     public static double convertTaxFromYearToMonth(double tax){
         return Math.pow(1 + tax, 1/12d)-1;
+    }
+
+    public static double convertTaxFromMonthToYear(double tax){
+        return Math.pow(1 + tax, 12d)-1;
     }
 }
